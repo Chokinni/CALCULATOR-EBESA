@@ -48,6 +48,7 @@
             button17 = new Button();
             btnErase = new Button();
             btnPluMin = new Button();
+            button1 = new Button();
             SuspendLayout();
             // 
             // txtTotal
@@ -275,12 +276,24 @@
             btnPluMin.UseVisualStyleBackColor = true;
             btnPluMin.Click += btnPluMin_Click;
             // 
+            // button1
+            // 
+            button1.Font = new Font("Segoe UI", 20.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            button1.Location = new Point(608, 252);
+            button1.Name = "button1";
+            button1.Size = new Size(99, 50);
+            button1.TabIndex = 20;
+            button1.Text = " √";
+            button1.UseVisualStyleBackColor = true;
+            button1.Click += button1_Click;
+            // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.ActiveCaption;
             ClientSize = new Size(739, 471);
+            Controls.Add(button1);
             Controls.Add(btnPluMin);
             Controls.Add(btnErase);
             Controls.Add(button17);
@@ -330,5 +343,6 @@
         private Button button17;
         private Button btnErase;
         private Button btnPluMin;
+        private Button button1;
     }
 }

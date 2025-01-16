@@ -1,4 +1,4 @@
-using System.Data;
+﻿using System.Data;
 using System.Linq.Expressions;
 
 namespace CALCULATOR_2._0
@@ -91,33 +91,53 @@ namespace CALCULATOR_2._0
         private void button14_Click(object sender, EventArgs e)
         {
             expressions.Add(currentInput); // Store the current number
-            expressions.Add("+"); // Add the operator
-            currentInput = ""; // Reset current input
-            txtTotal.Text += " + ";
+            if (!string.IsNullOrEmpty(currentInput) && !currentInput.Contains("+"))
+            {
+                expressions.Add("+"); // Add the operator
+                currentInput = ""; // Reset current input
+                txtTotal.Text += " + ";
+            }
+
         }
 
         private void button15_Click(object sender, EventArgs e)
         {
             expressions.Add(currentInput); // Store the current number
-            expressions.Add("-"); // Add the operator
-            currentInput = ""; // Reset current input
-            txtTotal.Text += " - ";
+
+            if (!string.IsNullOrEmpty(currentInput) && !currentInput.Contains("-"))
+            {
+                expressions.Add("-"); // Add the operator
+                currentInput = ""; // Reset current input
+                txtTotal.Text += " - ";
+            }
+
+
         }
 
         private void button16_Click(object sender, EventArgs e)
         {
+
             expressions.Add(currentInput); // Store the current number
-            expressions.Add("*"); // Add the operator
-            currentInput = ""; // Reset current input
-            txtTotal.Text += " * ";
+            if (!string.IsNullOrEmpty(currentInput) && !currentInput.Contains("*"))
+            {
+                expressions.Add("*"); // Add the operator
+                currentInput = ""; // Reset current input
+                txtTotal.Text += " * ";
+            }
+
         }
 
         private void button17_Click(object sender, EventArgs e)
         {
             expressions.Add(currentInput); // Store the current number
-            expressions.Add("/"); // Add the operator
-            currentInput = ""; // Reset current input
-            txtTotal.Text += " / ";
+
+            if (!string.IsNullOrEmpty(currentInput) && !currentInput.Contains("/"))
+            {
+                expressions.Add("/"); // Add the operator
+                currentInput = ""; // Reset current input
+                txtTotal.Text += " / ";
+            }
+
         }
 
         private void btnCLR_Click(object sender, EventArgs e)
@@ -137,7 +157,7 @@ namespace CALCULATOR_2._0
 
                 if (expression.Contains("0 / 0"))
                 {
-                    txtTotal.Text = "Undefined operation: 0 � 0";
+                    txtTotal.Text = "Undefined operation: 0 ÷ 0";
                     expressions.Clear();
                     currentInput = "";
                     return;
@@ -153,8 +173,8 @@ namespace CALCULATOR_2._0
             {
                 // Show error message if the expression is invalid
                 txtTotal.Text = "Undefined operation";
-               
-                
+
+
             }
 
             expressions.Clear(); // Clear the list for the next calculation
@@ -196,6 +216,34 @@ namespace CALCULATOR_2._0
                 // Update currentInput and txtTotal
                 currentInput = value.ToString();
                 txtTotal.Text = string.Join(" ", expressions) + " " + currentInput;
+            }
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            if (!string.IsNullOrEmpty(currentInput))
+            {
+                try
+                {
+                    double value = double.Parse(currentInput);
+
+                    if (value < 0)
+                    {
+                        txtTotal.Text = "Invalid input for √"; // Negative number error
+                        return;
+                    }
+
+                    currentInput = Math.Sqrt(value).ToString(); // Calculate square root
+                    txtTotal.Text = currentInput; // Update display
+                }
+                catch
+                {
+                    txtTotal.Text = "Error in √ operation"; // Fallback error message
+                }
+            }
+            else
+            {
+                txtTotal.Text = "Input a value"; // No input error
             }
         }
     }
